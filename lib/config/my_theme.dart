@@ -20,6 +20,19 @@ class MyTheme {
       selectedIconTheme: IconThemeData(
           size: 40
       ),
-    )
+    ),
+    textTheme: TextTheme(
+      labelMedium: TextStyle(
+        color: Colors.black,
+        fontSize: 22,
+        fontWeight: FontWeight.w500
+      ),
+      labelSmall: TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+      )
+    ),
+
   );
 }
