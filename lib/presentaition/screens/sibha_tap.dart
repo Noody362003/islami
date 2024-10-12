@@ -1,10 +1,90 @@
 import 'package:flutter/material.dart';
+import 'package:islami/core/assets_manager.dart';
+import 'package:islami/core/strings_manager.dart';
 
-class SebhaTap extends StatelessWidget {
+class SebhaTap extends StatefulWidget {
   const SebhaTap({super.key});
+  @override
+  State<SebhaTap> createState() => _SebhaTapState();
+}
+
+class _SebhaTapState extends State<SebhaTap>
+    with SingleTickerProviderStateMixin{
+  late AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 5000),
+      vsync: this,
+    );
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+  int counter = 0;
+  List<String> tasbeha = [
+    'سبحان الله',
+    'الحمد لله',
+    'لا اله الا الله',
+    'الله أكبر',
+    'لا حول ولا قوة الا بالله'
+  ];
+  int sebha_index = 0;
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            child: Column(
+              children: [
+                Image(image: AssetImage(AssetsManager.sebhaHeadTapImageLight)),
+                //RotationTransition(turns: ,
+                //child: Image(image: AssetImage(AssetsManager.sebhaBodyTapImageLight))),
+              ],
+            ),
+          ),
+          Text(
+            StringsManager.tasdehaLabel,
+            style: Theme.of(context).textTheme.labelMedium,
+          ),
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(color: Color(0xFFA67FF)),
+            child: Text(
+              '$counter',
+              style: Theme.of(context).textTheme.labelSmall,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                if (counter < 33) {
+                  counter++;
+                  // animation can be added here
+                } else {
+                  counter = 0;
+                  if (sebha_index < tasbeha.length - 1) {
+                    sebha_index++;
+                  } else {
+                    sebha_index = 0;
+                  }
+                }
+              });
+            },
+            child: Text("${tasbeha[sebha_index]}"),
+          )
+        ],
+      ),
+    );
   }
 }

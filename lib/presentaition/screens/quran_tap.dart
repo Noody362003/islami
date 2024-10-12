@@ -1,9 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:islami/core/assets_manager.dart';
-import 'package:islami/core/colors_manager.dart';
-
-import '../../core/strings_manager.dart';
 import '../widgets/quran_header.dart';
 import '../widgets/quran_item_widget.dart';
 
