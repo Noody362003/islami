@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:islami/core/assets_manager.dart';
 import 'package:islami/core/strings_manager.dart';
 
@@ -64,16 +65,25 @@ class _SebhaTapState extends State<SebhaTap>
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
-            child: Column(
+            margin: EdgeInsets.symmetric(vertical: 40), // Adjust the vertical spacing
+            child: Stack(
+              alignment: Alignment.center, // Center everything
               children: [
-                Image(image: AssetImage(AssetsManager.sebhaHeadTapImageLight)),
-                RotationTransition(
-                  turns: AlwaysStoppedAnimation(rotationAngle),
-                  child: Image(image: AssetImage(AssetsManager.sebhaBodyTapImageLight)),
+                Positioned(
+                  top: 0, // Move it higher
+                  child: Image(image: AssetImage(AssetsManager.sebhaHeadTapImageLight)),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 50), // Add margin to separate the beads
+                  child: RotationTransition(
+                    turns: AlwaysStoppedAnimation(rotationAngle),
+                    child: Image(image: AssetImage(AssetsManager.sebhaBodyTapImageLight)),
+                  ),
                 ),
               ],
             ),
           ),
+
           Text(
             StringsManager.tasdehaLabel,
             style: Theme.of(context).textTheme.labelMedium,
