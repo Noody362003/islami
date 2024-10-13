@@ -11,11 +11,12 @@ class SebhaTap extends StatefulWidget {
 class _SebhaTapState extends State<SebhaTap>
     with SingleTickerProviderStateMixin{
   late AnimationController _controller;
+  double rotationAngle = 0.0;
 
   @override
   void initState() {
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 5000),
+      duration: Duration(milliseconds: 300),
       vsync: this,
     );
     super.initState();
@@ -36,18 +37,40 @@ class _SebhaTapState extends State<SebhaTap>
   ];
   int sebha_index = 0;
 
+  void _incrementCounter() {
+    setState(() {
+      if (counter < 33) {
+        counter++;
+        rotationAngle += (1 / 33);
+        _controller.forward(from: 0);
+      } else {
+        counter = 0;
+        rotationAngle = 0; // Reset rotation angle
+        _controller.forward(from: 0); // Reset rotation
+        if (sebha_index < tasbeha.length - 1) {
+          sebha_index++;
+        } else {
+          sebha_index = 0;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Container(
             child: Column(
               children: [
                 Image(image: AssetImage(AssetsManager.sebhaHeadTapImageLight)),
-                //RotationTransition(turns: ,
-                //child: Image(image: AssetImage(AssetsManager.sebhaBodyTapImageLight))),
+                RotationTransition(
+                  turns: AlwaysStoppedAnimation(rotationAngle),
+                  child: Image(image: AssetImage(AssetsManager.sebhaBodyTapImageLight)),
+                ),
               ],
             ),
           ),
@@ -66,23 +89,23 @@ class _SebhaTapState extends State<SebhaTap>
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              setState(() {
-                if (counter < 33) {
-                  counter++;
-                  // animation can be added here
-                } else {
-                  counter = 0;
-                  if (sebha_index < tasbeha.length - 1) {
-                    sebha_index++;
-                  } else {
-                    sebha_index = 0;
-                  }
-                }
-              });
-            },
-            child: Text("${tasbeha[sebha_index]}"),
-          )
+            onPressed: _incrementCounter,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Color(0xFFC9A46F), // Background color (soft brown/tan)
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 40), // Padding
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20), // Rounded corners
+              ),
+            ),
+            child: Text(
+              "${tasbeha[sebha_index]}",
+              style: TextStyle(
+                color: Colors.white, // White text
+                fontSize: 20, // Font size similar to design
+                fontWeight: FontWeight.bold, // Bold text
+              ),
+            ),
+          ),
         ],
       ),
     );
