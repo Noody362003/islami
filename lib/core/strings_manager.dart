@@ -7,5 +7,6 @@ class StringsManager {
   static const String settingsLabel='Settings';
   static const String chapterLabel='Chapter Name';
   static const String versesLabel='Verses Number';
+  static const String tasdehaLabel='Tasbeha Number';
 
 }
