@@ -142,7 +142,10 @@ class QuranTap extends StatelessWidget {
           QuranTapHeaderWidget(),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context,index)=>QuranItemWidget(suraName: suraNames[index],versesNumber: versesNumber[index],),
+              itemBuilder: (context,index)=>
+                  QuranItemWidget(
+                  suraData: SuraItem(index: index, versesNumber: versesNumber[index], suraName: suraNames[index]),
+                  ),
               itemCount: suraNames.length,
             ),
           )
