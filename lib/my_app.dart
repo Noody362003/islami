@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:islami/config/my_theme.dart';
 import 'package:islami/core/routes_manager.dart';
 import 'package:islami/presentaition/screens/home_screen.dart';
+import 'package:islami/presentaition/screens/quran_details.dart';
 import 'package:islami/presentaition/screens/splash_screen.dart';
 
 class MyApp extends StatelessWidget {
@@ -16,6 +17,8 @@ class MyApp extends StatelessWidget {
       routes: {
         RoutesManager.splashRoute: (_)=> SpalshScreen(),
         RoutesManager.homeRoute: (_)=> HomeScreen(),
+        RoutesManager.quranDetailsRoute: (_)=> QuranDetailsScreen(),
+
 
       },
       initialRoute: RoutesManager.splashRoute,
