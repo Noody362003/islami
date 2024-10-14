@@ -4,6 +4,7 @@ import '../core/colors_manager.dart';
 
 class MyTheme {
   static ThemeData lightTheme = ThemeData(
+    primaryColor: ColorsManager.goldColor,
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.transparent,
       centerTitle: true,
